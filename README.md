@@ -1,1 +1,1 @@
-# full-stack-video-platform
+# A full stack projects to learn the process of building the back-end and design of front-end
