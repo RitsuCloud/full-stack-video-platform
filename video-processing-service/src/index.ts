@@ -1,6 +1,10 @@
 import express from 'express';
 import ffmpeg from 'fluent-ffmpeg';
 
+//https://stackoverflow.com/questions/45555960/nodejs-fluent-ffmpeg-cannot-find-ffmpeg
+const ffmpegPath = require('@ffmpeg-installer/ffmpeg').path;
+ffmpeg.setFfmpegPath(ffmpegPath);
+
 const app = express();
 app.use(express.json());
 
