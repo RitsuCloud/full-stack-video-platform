@@ -14,8 +14,6 @@ const processedVideoBucketName = "ritsu-cloud-processed-videos";
 
 // download to this directory
 const localRawVideoPath = "./raw-videos";
-// process to this directory, then we upload it and delete the raw and processed video
-// from our local machine
 const localProcessedVideoPath = "./processed-videos";
 
 /**
@@ -25,6 +23,7 @@ export function setupDirectories() {
   ensureDirectoryExistence(localRawVideoPath);
   ensureDirectoryExistence(localProcessedVideoPath);
 }
+
 
 /**
  * @param rawVideoName - The name of the file to convert from {@link localRawVideoPath}.
@@ -54,7 +53,6 @@ export function convertVideo(rawVideoName: string, processedVideoName: string) {
  * @returns A promise that resolves when the file has been downloaded.
  */
 export async function downloadRawVideo(fileName: string) {
-  await console.log(`From downloadrawvideo method, this the file name: ${fileName}`)
   await storage.bucket(rawVideoBucketName)
     .file(fileName)
     .download({

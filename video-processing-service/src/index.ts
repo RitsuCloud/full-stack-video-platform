@@ -15,14 +15,16 @@ setupDirectories();
 const app = express();
 app.use(express.json());
 
+console.log("Beginning of app.post.")
 // Process a video file from Cloud Storage into 360p
 app.post('/process-video', async (req, res) => {
-
+  console.log("app.post started")
   // Get the bucket and filename from the Cloud Pub/Sub message
   let data;
   try {
     const message = Buffer.from(req.body.message.data, 'base64').toString('utf8');
     data = JSON.parse(message);
+    console.log(data.log)
     if (!data.name) {
       throw new Error('Invalid message payload received.');
     }
@@ -33,7 +35,7 @@ app.post('/process-video', async (req, res) => {
 
   const inputFileName = data.name;
   const outputFileName = `processed-${inputFileName}`;
-
+  console.log(`This is the inputFileName: ${inputFileName}`)
   // Download the raw video from Cloud Storage
   await downloadRawVideo(inputFileName);
 
